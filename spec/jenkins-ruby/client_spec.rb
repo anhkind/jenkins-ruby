@@ -15,18 +15,12 @@ describe Jenkins::Client do
       ).not_to raise_error
     end
 
-    it 'initializes properly without port param' do
+    it 'does not initialize if options are not Hash' do
       expect(
         lambda do
-          @client = Jenkins::Client.new({
-            :host     => 'localhost',
-            :username => 'username',
-            :password => 'password'
-          })
+          Jenkins::Client.new('123')
         end
-      ).not_to raise_error
-
-      expect(@client.port).to eq(8080)
+      ).to raise_error
     end
 
     it 'does not initialize without host' do
@@ -34,6 +28,18 @@ describe Jenkins::Client do
         lambda do
           Jenkins::Client.new({
             :port     => 8080,
+            :username => 'username',
+            :password => 'password'
+          })
+        end
+      ).to raise_error
+    end
+
+    it 'does not initialize without port' do
+      expect(
+        lambda do
+          @client = Jenkins::Client.new({
+            :host     => 'localhost',
             :username => 'username',
             :password => 'password'
           })
