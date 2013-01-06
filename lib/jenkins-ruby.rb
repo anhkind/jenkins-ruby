@@ -1,2 +1,2 @@
 require "jenkins"
-require "jenkins-ruby/version"
+require "jenkins/version"

@@ -18,5 +18,9 @@ class Jenkins
       raise "Jenkins::Configuration should be initialized with a Hash" unless options.is_a? Hash
       @options = DEFAULT.merge(options)
     end
+
+    def subset(*keys)
+      @options.select{ |k, v| keys.include? k }
+    end
   end
 end

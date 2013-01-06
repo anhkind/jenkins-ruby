@@ -33,4 +33,23 @@ describe Jenkins::Configuration do
       expect(config.options[:port]).to eq(8080)
     end
   end
+
+  describe '#subset' do
+    before do
+      @configuration = Jenkins::Configuration.new({
+        :host     => 'localhost',
+        :port     => 8080,
+        :username => 'username',
+        :password => 'password'
+      })
+    end
+
+    it 'gets the subset correctly' do
+      subset = @configuration.subset(:host, :port)
+      expect(subset).to eq(
+        :host => 'localhost',
+        :port => 8080
+      )
+    end
+  end
 end
