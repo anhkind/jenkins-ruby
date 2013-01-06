@@ -1,4 +1,4 @@
-# Jenkins::Ruby
+# jenkins-ruby [![Build Status](https://travis-ci.org/anhkind/jenkins-ruby.png)](https://travis-ci.org/anhkind/jenkins-ruby) [![Dependency Status](https://gemnasium.com/anhkind/jenkins-ruby.png)](https://gemnasium.com/anhkind/jenkins-ruby)
 
 TODO: Write a gem description
 
