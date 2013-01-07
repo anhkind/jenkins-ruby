@@ -20,7 +20,7 @@ describe Jenkins::Configuration do
         lambda do
           Jenkins::Configuration.new('123')
         end
-      ).to raise_error(ArgumentError)
+      ).to raise_error
     end
 
     it 'sets to default port' do

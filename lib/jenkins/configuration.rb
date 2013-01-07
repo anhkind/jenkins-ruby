@@ -15,7 +15,7 @@ class Jenkins
     #  * the +:password+ param is the password for connecting to the CI server
     #
     def initialize(options)
-      raise ArgumentError, "Jenkins::Configuration should be initialized with a Hash" unless options.is_a? Hash
+      raise TypeError, "Jenkins::Configuration should be initialized with a Hash" unless options.is_a? Hash
       @options = DEFAULT.merge(options)
     end
 
