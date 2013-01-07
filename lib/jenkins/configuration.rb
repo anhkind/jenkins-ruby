@@ -20,7 +20,9 @@ class Jenkins
     end
 
     def subset(*keys)
-      @options.select{ |k, v| keys.include? k }
+      set = @options.select{ |k, v| keys.include? k }
+      #Ruby 1.8.x fix
+      set = Hash[set] if set.is_a? Array
     end
 
     def fetch(*keys)
