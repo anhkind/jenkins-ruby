@@ -22,5 +22,9 @@ class Jenkins
     def subset(*keys)
       @options.select{ |k, v| keys.include? k }
     end
+
+    def fetch(*keys)
+      @options.values_at(*keys)
+    end
   end
 end

@@ -34,7 +34,7 @@ describe Jenkins::Configuration do
     end
   end
 
-  describe '#subset' do
+  describe 'instance methods' do
     before do
       @configuration = Jenkins::Configuration.new({
         :host     => 'localhost',
@@ -44,12 +44,18 @@ describe Jenkins::Configuration do
       })
     end
 
-    it 'gets the subset correctly' do
-      subset = @configuration.subset(:host, :port)
-      expect(subset).to eq(
-        :host => 'localhost',
-        :port => 8080
-      )
+    describe '#subset' do
+      it 'gets the subset correctly' do
+        subset = @configuration.subset(:host, :port)
+        expect(subset).to eq( :host => 'localhost', :port => 8080 )
+      end
+    end
+
+    describe '#fetch' do
+      it 'fetches list of values from list of keys' do
+        values = @configuration.fetch(:host, :port)
+        expect(values).to eq( ['localhost', 8080] )
+      end
     end
   end
 end
