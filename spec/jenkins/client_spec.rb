@@ -20,7 +20,7 @@ describe Jenkins::Client do
         lambda do
           Jenkins::Client.new('123')
         end
-      ).to raise_error
+      ).to raise_error(ArgumentError)
     end
 
     it 'does not initialize without host' do
@@ -32,7 +32,7 @@ describe Jenkins::Client do
             :password => 'password'
           })
         end
-      ).to raise_error
+      ).to raise_error(ArgumentError)
     end
 
     it 'does not initialize without port' do
@@ -44,7 +44,7 @@ describe Jenkins::Client do
             :password => 'password'
           })
         end
-      ).to raise_error
+      ).to raise_error(ArgumentError)
     end
 
     it 'does not initialize without username' do
@@ -56,7 +56,7 @@ describe Jenkins::Client do
             :password => 'password'
           })
         end
-      ).to raise_error
+      ).to raise_error(ArgumentError)
     end
 
     it 'does not initialize without password' do
@@ -68,7 +68,7 @@ describe Jenkins::Client do
             :username => 'username'
           })
         end
-      ).to raise_error
+      ).to raise_error(ArgumentError)
     end
   end
 end
