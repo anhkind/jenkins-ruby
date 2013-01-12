@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://192.168.0.17:8080/api/json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      !binary "c2VydmVy":
+      - !binary |-
+        V2luc3RvbmUgU2VydmxldCBFbmdpbmUgdjAuOS4xMA==
+      !binary "eC1qZW5raW5z":
+      - !binary |-
+        MS40OTg=
+      !binary "eC1qZW5raW5zLXNlc3Npb24=":
+      - !binary |-
+        YjBmOGRiYTk=
+      !binary "Y29udGVudC10eXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PVVURi04
+      !binary "Y29udGVudC1sZW5ndGg=":
+      - !binary |-
+        MzE5
+      !binary "Y29ubmVjdGlvbg==":
+      - !binary |-
+        Q2xvc2U=
+      !binary "ZGF0ZQ==":
+      - !binary |-
+        U2F0LCAxMiBKYW4gMjAxMyAxNzoyNzo0NSBHTVQ=
+      !binary "eC1wb3dlcmVkLWJ5":
+      - !binary |-
+        U2VydmxldC8yLjUgKFdpbnN0b25lLzAuOS4xMCk=
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJhc3NpZ25lZExhYmVscyI6W3t9XSwibW9kZSI6Ik5PUk1BTCIsIm5vZGVE
+        ZXNjcmlwdGlvbiI6InRoZSBtYXN0ZXIgSmVua2lucyBub2RlIiwibm9kZU5h
+        bWUiOiIiLCJudW1FeGVjdXRvcnMiOjIsImRlc2NyaXB0aW9uIjpudWxsLCJq
+        b2JzIjpbeyJuYW1lIjoiamVua2lucy1ydWJ5IiwidXJsIjoiaHR0cDovLzE5
+        Mi4xNjguMC4xNzo4MDgwL2pvYi9qZW5raW5zLXJ1YnkvIiwiY29sb3IiOiJi
+        bHVlIn0seyJuYW1lIjoiSnVudG9ib3giLCJ1cmwiOiJodHRwOi8vMTkyLjE2
+        OC4wLjE3OjgwODAvam9iL0p1bnRvYm94LyIsImNvbG9yIjoicmVkIn0seyJu
+        YW1lIjoibmFtZSIsInVybCI6Imh0dHA6Ly8xOTIuMTY4LjAuMTc6ODA4MC9q
+        b2IvbmFtZS8iLCJjb2xvciI6ImdyZXkifV0sIm92ZXJhbGxMb2FkIjp7fSwi
+        cHJpbWFyeVZpZXciOnsibmFtZSI6IkFsbCIsInVybCI6Imh0dHA6Ly8xOTIu
+        MTY4LjAuMTc6ODA4MC8ifSwicXVpZXRpbmdEb3duIjpmYWxzZSwic2xhdmVB
+        Z2VudFBvcnQiOjAsInVubGFiZWxlZExvYWQiOnt9LCJ1c2VDcnVtYnMiOmZh
+        bHNlLCJ1c2VTZWN1cml0eSI6dHJ1ZSwidmlld3MiOlt7Im5hbWUiOiJBbGwi
+        LCJ1cmwiOiJodHRwOi8vMTkyLjE2OC4wLjE3OjgwODAvIn1dfQ==
+    http_version: 
+  recorded_at: Sat, 12 Jan 2013 17:27:45 GMT
+recorded_with: VCR 2.4.0

@@ -28,7 +28,11 @@ class Jenkins
     end
 
     def exist?
-      false
+      response = client.get("/api/json",
+        content_type: 'application/json'
+      )
+      jobs = response.body["jobs"]
+      jobs && jobs.map{|j| j["name"]}.include?(name)
     end
 
     def destroy

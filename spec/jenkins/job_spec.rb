@@ -69,9 +69,24 @@ describe Jenkins::Job do
       @job.configuration.stub(:to_xml).and_return(content(file('blank_config.xml')))
     end
 
+    describe '#exist?' do
+      it 'exists on server' do
+        vcr 'job/exist' do
+          expect(@job.exist?).to be_true
+        end
+      end
+
+      it 'does not exist on server' do
+        vcr 'job/exist_failed' do
+          expect(@job.exist?).not_to be_true
+        end
+      end
+    end
+
     describe '#save' do
-      it 'saves job to server' do
-        vcr 'job/save' do
+      it 'is saved to server if it\'s a new job (not exist)' do
+        @job.stub(:exist?).and_return(false)
+        vcr 'job/save_new' do
           expect(@job.save).to be_true
         end
       end

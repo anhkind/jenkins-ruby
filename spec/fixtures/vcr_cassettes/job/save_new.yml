@@ -21,19 +21,19 @@ http_interactions:
       code: 200
       message: 
     headers:
-      server:
+      !binary "c2VydmVy":
       - Winstone Servlet Engine v0.9.10
-      connection:
+      !binary "Y29ubmVjdGlvbg==":
       - Close
-      content-type:
+      !binary "Y29udGVudC10eXBl":
       - text/html;charset=ISO-8859-1
-      date:
-      - Sat, 12 Jan 2013 16:03:20 GMT
-      x-powered-by:
+      !binary "ZGF0ZQ==":
+      - Sat, 12 Jan 2013 17:31:27 GMT
+      !binary "eC1wb3dlcmVkLWJ5":
       - Servlet/2.5 (Winstone/0.9.10)
     body:
       encoding: US-ASCII
       string: ''
     http_version: 
-  recorded_at: Sat, 12 Jan 2013 16:03:20 GMT
+  recorded_at: Sat, 12 Jan 2013 17:31:27 GMT
 recorded_with: VCR 2.4.0

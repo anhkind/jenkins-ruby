@@ -1,4 +1,5 @@
 require "faraday"
+require "faraday_middleware"
 
 class Jenkins
   class Client < Faraday::Connection
@@ -22,7 +23,10 @@ class Jenkins
       raise "Port is required to connect to Jenkins Server"            unless @port
       raise "Credentials are required to connect to te Jenkins Server" unless @username && @password
 
-      super(url: "http://#@host:#@port")
+      super(url: "http://#@host:#@port") do |conn|
+        conn.response :json, content_type: /\bjson$/
+        conn.adapter  Faraday.default_adapter
+      end
     end
 
     [:get, :post, :put, :delete].each do |http_method|
