@@ -1,7 +1,7 @@
 class Jenkins
   class Configuration
     DEFAULT = {
-      :port => 8080
+      port: 8080
     }
 
     attr_reader :options
@@ -21,7 +21,6 @@ class Jenkins
 
     def subset(*keys)
       set = @options.select{ |k, v| keys.include? k }
-      Hash[set] #Ruby 1.8.x fix
     end
 
     def fetch(*keys)

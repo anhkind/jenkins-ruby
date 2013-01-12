@@ -6,10 +6,10 @@ describe Jenkins::Client do
       expect(
         lambda do
           Jenkins::Client.new({
-            :host     => 'localhost',
-            :port     => 8080,
-            :username => 'username',
-            :password => 'password'
+            host:     'localhost',
+            port:     8080,
+            username: 'username',
+            password: 'password'
           })
         end
       ).not_to raise_error
@@ -27,9 +27,9 @@ describe Jenkins::Client do
       expect(
         lambda do
           Jenkins::Client.new({
-            :port     => 8080,
-            :username => 'username',
-            :password => 'password'
+            port:     8080,
+            username: 'username',
+            password: 'password'
           })
         end
       ).to raise_error
@@ -39,9 +39,9 @@ describe Jenkins::Client do
       expect(
         lambda do
           @client = Jenkins::Client.new({
-            :host     => 'localhost',
-            :username => 'username',
-            :password => 'password'
+            host:     'localhost',
+            username: 'username',
+            password: 'password'
           })
         end
       ).to raise_error
@@ -51,9 +51,9 @@ describe Jenkins::Client do
       expect(
         lambda do
           Jenkins::Client.new({
-            :host     => 'localhost',
-            :port     => 8080,
-            :password => 'password'
+            host:     'localhost',
+            port:     8080,
+            password: 'password'
           })
         end
       ).to raise_error
@@ -63,9 +63,9 @@ describe Jenkins::Client do
       expect(
         lambda do
           Jenkins::Client.new({
-            :host     => 'localhost',
-            :port     => 8080,
-            :username => 'username'
+            host:     'localhost',
+            port:     8080,
+            username: 'username',
           })
         end
       ).to raise_error
@@ -81,10 +81,10 @@ describe Jenkins::Client do
         stub.delete('/path') { [200, {}, 'ok'] }
       end
       @client = Jenkins::Client.new({
-        :host     => 'localhost',
-        :port     => 8080,
-        :username => 'username',
-        :password => 'password'
+        host:     'localhost',
+        port:     8080,
+        username: 'username',
+        password: 'password'
       }) do |builder|
         builder.adapter :test, @stubs
       end

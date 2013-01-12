@@ -22,7 +22,7 @@ class Jenkins
       raise "Port is required to connect to Jenkins Server"            unless @port
       raise "Credentials are required to connect to te Jenkins Server" unless @username && @password
 
-      super(:url => "http://#@host:#@port")
+      super(url: "http://#@host:#@port")
     end
 
     [:get, :post, :put, :delete].each do |http_method|

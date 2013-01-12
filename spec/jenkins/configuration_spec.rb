@@ -6,10 +6,10 @@ describe Jenkins::Configuration do
       expect(
         lambda do
           Jenkins::Configuration.new({
-            :host     => 'localhost',
-            :port     => 8080,
-            :username => 'username',
-            :password => 'password'
+            host:     'localhost',
+            port:     8080,
+            username: 'username',
+            password: 'password'
           })
         end
       ).not_to raise_error
@@ -25,9 +25,9 @@ describe Jenkins::Configuration do
 
     it 'sets to default port' do
       config = Jenkins::Configuration.new({
-        :host     => 'localhost',
-        :username => 'username',
-        :password => 'password'
+        host:     'localhost',
+        username: 'username',
+        password: 'password'
       })
 
       expect(config.options[:port]).to eq(8080)
@@ -37,17 +37,17 @@ describe Jenkins::Configuration do
   describe 'instance methods' do
     before do
       @configuration = Jenkins::Configuration.new({
-        :host     => 'localhost',
-        :port     => 8080,
-        :username => 'username',
-        :password => 'password'
+        host:     'localhost',
+        port:     8080,
+        username: 'username',
+        password: 'password'
       })
     end
 
     describe '#subset' do
       it 'gets the subset correctly' do
         subset = @configuration.subset(:host, :port)
-        expect(subset).to eq( :host => 'localhost', :port => 8080 )
+        expect(subset).to eq( host: 'localhost', port: 8080 )
       end
     end
 

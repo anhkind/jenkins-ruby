@@ -5,10 +5,10 @@ describe Jenkins do
     context 'with no error' do
       before do
         @options = {
-          :host     => 'localhost',
-          :port     => 8080,
-          :username => 'username',
-          :password => 'password'
+          host:     'localhost',
+          port:     8080,
+          username: 'username',
+          password: 'password'
         }
       end
 
