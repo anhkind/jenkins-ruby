@@ -18,11 +18,11 @@ class Jenkins
         instance_variable_set("@#{key}", value) if value
       end
 
-      raise "Host is required to connect to Jenkins Server"                unless @host
-      raise "Port is required to connect to Jenkins Server"                unless @port
-      raise "Credentials are required to connect to te Jenkins Server"     unless @username && @password
+      raise "Host is required to connect to Jenkins Server"            unless @host
+      raise "Port is required to connect to Jenkins Server"            unless @port
+      raise "Credentials are required to connect to te Jenkins Server" unless @username && @password
 
-      super(url: "http://#@host:#@port")
+      super(:url => "http://#@host:#@port")
     end
 
     [:get, :post, :put, :delete].each do |http_method|
