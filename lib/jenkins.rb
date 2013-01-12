@@ -16,3 +16,5 @@ class Jenkins
     @client ||= Client.new(configuration.subset(:host, :port, :username, :password))
   end
 end
+
+require "jenkins/api"

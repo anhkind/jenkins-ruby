@@ -29,7 +29,7 @@ class Jenkins
       define_method(http_method) do |path, params = {}|
         content_type = params.delete(:content_type)
         basic_auth(@username, @password)
-        response = super(path) do |req|
+        response = super(URI::encode(path)) do |req|
           req.headers['Content-Type'] = content_type if content_type
         end
         response.body
