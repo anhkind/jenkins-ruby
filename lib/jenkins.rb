@@ -4,15 +4,15 @@ require "jenkins/client"
 class Jenkins
   ROOT = File.join(File.dirname(__FILE__), '..')
 
-  def initialize(options)
+  def self.configure(options)
     @options = options
   end
 
-  def configuration
+  def self.configuration
     @configuration ||= Configuration.new(@options)
   end
 
-  def client
+  def self.client
     @client ||= Client.new(configuration.subset(:host, :port, :username, :password))
   end
 end

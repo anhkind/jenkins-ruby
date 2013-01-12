@@ -15,7 +15,7 @@ describe Jenkins do
       it 'initializes properly' do
         expect(
           lambda do
-            Jenkins.new(@options)
+            Jenkins.configure(@options)
           end
         ).not_to raise_error
       end
@@ -23,8 +23,8 @@ describe Jenkins do
       it 'initializes configuration properly' do
         expect(
           lambda do
-            jenkin = Jenkins.new(@options)
-            jenkin.configuration
+            Jenkins.configure(@options)
+            Jenkins.configuration
           end
         ).not_to raise_error
       end
@@ -32,8 +32,8 @@ describe Jenkins do
       it 'initializes client properly' do
         expect(
           lambda do
-            jenkin = Jenkins.new(@options)
-            jenkin.client
+            Jenkins.configure(@options)
+            Jenkins.client
           end
         ).not_to raise_error
       end
