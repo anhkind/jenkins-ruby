@@ -1,5 +1,7 @@
+require "faraday"
+
 class Jenkins
-  class Client
+  class Client < Faraday::Connection
     attr_reader :host, :port
     # Initialize a Client object with Jenkins CI server information and credentials
     #
@@ -10,15 +12,28 @@ class Jenkins
     #  * the +:password+ param is the password for connecting to the CI server
     #
     def initialize(options)
-      raise TypeError, "Jenkins::Client should be initialized with a Hash"        unless options.is_a? Hash
+      raise TypeError, "Jenkins::Client should be initialized with a Hash" unless options.is_a? Hash
 
       options.each do |key, value|
         instance_variable_set("@#{key}", value) if value
       end
 
-      raise "Host is required to connect to Jenkins Server"            unless @host
-      raise "Port is required to connect to Jenkins Server"            unless @port
-      raise "Credentials are required to connect to te Jenkins Server" unless @username && @password
+      raise "Host is required to connect to Jenkins Server"                unless @host
+      raise "Port is required to connect to Jenkins Server"                unless @port
+      raise "Credentials are required to connect to te Jenkins Server"     unless @username && @password
+
+      super(url: "http://#@host:#@port")
+    end
+
+    [:get, :post, :put, :delete].each do |http_method|
+      define_method(http_method) do |path, params = {}|
+        content_type = params.delete(:content_type)
+        basic_auth(@username, @password)
+        response = super(path) do |req|
+          req.headers['Content-Type'] = content_type if content_type
+        end
+        response.body
+      end
     end
   end
 end

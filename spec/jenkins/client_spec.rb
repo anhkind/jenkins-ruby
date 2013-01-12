@@ -71,4 +71,43 @@ describe Jenkins::Client do
       ).to raise_error
     end
   end
+
+  describe 'HTTP requests' do
+    before do
+      @stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+        stub.get('/path')    { [200, {}, 'ok'] }
+        stub.post('/path')   { [200, {}, 'ok'] }
+        stub.put('/path')    { [200, {}, 'ok'] }
+        stub.delete('/path') { [200, {}, 'ok'] }
+      end
+      @client = Jenkins::Client.new({
+        :host     => 'localhost',
+        :port     => 8080,
+        :username => 'username',
+        :password => 'password'
+      }) do |builder|
+        builder.adapter :test, @stubs
+      end
+    end
+
+    it 'should send GET request' do
+      response = @client.get('/path')
+      expect(response).to include("ok")
+    end
+
+    it 'should send POST request' do
+      response = @client.post('/path')
+      expect(response).to include("ok")
+    end
+
+    it 'should send PUT request' do
+      response = @client.put('/path')
+      expect(response).to include("ok")
+    end
+
+    it 'should send DELETE request' do
+      response = @client.delete('/path')
+      expect(response).to include("ok")
+    end
+  end
 end
