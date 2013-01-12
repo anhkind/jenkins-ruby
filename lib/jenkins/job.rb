@@ -35,23 +35,18 @@ class Jenkins
       jobs && jobs.map{|j| j["name"]}.include?(name)
     end
 
+    def save
+      api_path = exist? ? "/job/#{name}/config.xml" : "/createItem?name=#{name}"
+      client.post(api_path,
+        body:         configuration.to_xml,
+        content_type: 'text/xml'
+      ).success?
+    end
+
     def destroy
       client.post("/job/#{name}/doDelete",
         content_type: 'text/xml'
       ).status == 302
-    end
-
-    def save
-      if exist?
-        # update job
-        # ...
-      else
-        # create job
-        client.post("/createItem?name=#{name}",
-          body:         configuration.to_xml,
-          content_type: 'text/xml'
-        ).success?
-      end
     end
 
     def reload

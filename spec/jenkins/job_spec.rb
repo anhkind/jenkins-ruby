@@ -90,6 +90,13 @@ describe Jenkins::Job do
           expect(@job.save).to be_true
         end
       end
+
+      it 'is saved to server if it\'s a existing job' do
+        @job.stub(:exist?).and_return(true)
+        vcr 'job/save_existing' do
+          expect(@job.save).to be_true
+        end
+      end
     end
 
     describe '#destroy' do
