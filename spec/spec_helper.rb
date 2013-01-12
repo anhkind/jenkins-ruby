@@ -1,4 +1,5 @@
 require "jenkins-ruby"
+require "vcr"
 
 SPEC_ROOT = File.join(Jenkins::ROOT, 'spec')
 
@@ -10,4 +11,10 @@ RSpec.configure do |config|
   end
 
   config.include RSpecHelpers
+end
+
+VCR.configure do |c|
+  c.cassette_library_dir = SPEC_ROOT + '/fixtures/vcr_cassettes'
+  c.hook_into :faraday
+  c.allow_http_connections_when_no_cassette = true
 end

@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://192.168.0.17:8080/job/name/doDelete
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 302
+      message: 
+    headers:
+      server:
+      - Winstone Servlet Engine v0.9.10
+      location:
+      - http://192.168.0.17:8080/
+      content-length:
+      - '0'
+      connection:
+      - Close
+      date:
+      - Sat, 12 Jan 2013 16:03:20 GMT
+      x-powered-by:
+      - Servlet/2.5 (Winstone/0.9.10)
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: 
+  recorded_at: Sat, 12 Jan 2013 16:03:20 GMT
+recorded_with: VCR 2.4.0

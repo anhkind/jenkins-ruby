@@ -28,11 +28,13 @@ class Jenkins
     [:get, :post, :put, :delete].each do |http_method|
       define_method(http_method) do |path, params = {}|
         content_type = params.delete(:content_type)
+        body         = params.delete(:body)
         basic_auth(@username, @password)
         response = super(URI::encode(path)) do |req|
           req.headers['Content-Type'] = content_type if content_type
+          req.body                    = body         if body
         end
-        response.body
+        response
       end
     end
   end

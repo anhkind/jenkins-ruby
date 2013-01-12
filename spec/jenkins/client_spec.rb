@@ -92,22 +92,22 @@ describe Jenkins::Client do
 
     it 'should send GET request' do
       response = @client.get('/path')
-      expect(response).to include("ok")
+      expect(response.body).to include("ok")
     end
 
     it 'should send POST request' do
       response = @client.post('/path')
-      expect(response).to include("ok")
+      expect(response.body).to include("ok")
     end
 
     it 'should send PUT request' do
       response = @client.put('/path')
-      expect(response).to include("ok")
+      expect(response.body).to include("ok")
     end
 
     it 'should send DELETE request' do
       response = @client.delete('/path')
-      expect(response).to include("ok")
+      expect(response.body).to include("ok")
     end
   end
 end
