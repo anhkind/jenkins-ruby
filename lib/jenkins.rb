@@ -6,6 +6,7 @@ class Jenkins
 
   def self.configure(options)
     @options = options
+    @configuration = @client = nil #clear previous setting objects
   end
 
   def self.configuration

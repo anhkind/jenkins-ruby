@@ -35,8 +35,8 @@ class Jenkins
         body         = params.delete(:body)
         basic_auth(@username, @password)
         response = super(URI::encode(path)) do |req|
-          req.headers['Content-Type'] = content_type if content_type
-          req.body                    = body         if body
+          req.headers['Content-Type'] = content_type || 'application/json' #default is json
+          req.body                    = body if body
         end
         response
       end

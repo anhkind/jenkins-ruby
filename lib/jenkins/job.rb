@@ -1,13 +1,15 @@
 require 'jenkins/job/configuration'
+require 'jenkins/job/status'
 
 class Jenkins
   class Job
-    attr_reader :name, :client
+    attr_reader :name
 
     # class methods
     class << self
       def find(name)
-
+        job = new(name, @client)
+        job.status && job
       end
 
       def all
@@ -24,29 +26,29 @@ class Jenkins
     end
 
     def configuration
-      @configuration ||= Configuration.new
+      @configuration ||= Configuration.new(name, @client)
+    end
+
+    def status
+      @status ||= Status.new(name, @client)
     end
 
     def exist?
-      response = client.get("/api/json",
-        content_type: 'application/json'
-      )
+      response = @client.get("/api/json")
       jobs = response.body["jobs"]
       jobs && jobs.map{|j| j["name"]}.include?(name)
     end
 
     def save
       api_path = exist? ? "/job/#{name}/config.xml" : "/createItem?name=#{name}"
-      client.post(api_path,
+      @client.post(api_path,
         body:         configuration.to_xml,
         content_type: 'text/xml'
       ).success?
     end
 
     def destroy
-      client.post("/job/#{name}/doDelete",
-        content_type: 'text/xml'
-      ).status == 302
+      @client.post("/job/#{name}/doDelete").status == 302
     end
 
     def reload

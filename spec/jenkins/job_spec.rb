@@ -15,6 +15,20 @@ describe Jenkins::Job do
     before do
       Jenkins.configure(@options)
     end
+
+    describe '.find' do
+      it 'finds an existing job' do
+        vcr 'job/find' do
+          expect(Jenkins.job.find('name')).not_to be_nil
+        end
+      end
+
+      it 'does not a non-existing job' do
+        vcr 'job/find_failed' do
+          expect(Jenkins.job.find('not_existing')).not_to be_nil
+        end
+      end
+    end
   end
 
   describe '#initialize' do
@@ -78,7 +92,8 @@ describe Jenkins::Job do
 
       it 'does not exist on server' do
         vcr 'job/exist_failed' do
-          expect(@job.exist?).not_to be_true
+          job = Jenkins::Job.new('non-existing', @client)
+          expect(job.exist?).not_to be_true
         end
       end
     end

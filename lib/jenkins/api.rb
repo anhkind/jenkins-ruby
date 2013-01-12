@@ -4,7 +4,7 @@ class Jenkins
   def self.map_interface(method, klass)
     define_singleton_method(method) do
       klass.tap do |c|
-        c.instance_variable_set('@client', client)
+        c.instance_variable_set(:@client, client)
       end
     end
   end

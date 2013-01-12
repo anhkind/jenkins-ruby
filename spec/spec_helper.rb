@@ -17,4 +17,5 @@ VCR.configure do |c|
   c.cassette_library_dir = SPEC_ROOT + '/fixtures/vcr_cassettes'
   c.hook_into :faraday
   c.allow_http_connections_when_no_cassette = true
+  c.debug_logger = File.new(SPEC_ROOT + '/vcr.log', 'w')
 end
