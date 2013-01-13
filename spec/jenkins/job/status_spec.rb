@@ -19,14 +19,23 @@ describe Jenkins::Job::Status do
       end
     end
 
-    it 'has status if the job exists' do
-      expect(@status.exist?).to be_true
+    describe '#[]' do
+      it 'accesses status through [] method' do
+        expect(@status['name']).not_to be_nil
+        expect(@status['displayName']).not_to be_nil
+      end
     end
 
-    it 'doesn\'t have any status if the job doesn\'t exist' do
-      vcr 'job/status/exist_failed' do
-        status = Jenkins::Job::Status.new('non-existing', @client)
-        expect(status.exist?).not_to be_true
+    describe '#exist?' do
+      it 'has status if the job exists' do
+        expect(@status.exist?).to be_true
+      end
+
+      it 'doesn\'t have any status if the job doesn\'t exist' do
+        vcr 'job/status/exist_failed' do
+          status = Jenkins::Job::Status.new('non-existing', @client)
+          expect(status.exist?).not_to be_true
+        end
       end
     end
   end

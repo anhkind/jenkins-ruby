@@ -1,5 +1,3 @@
-require 'hashie'
-
 class Jenkins
   class Job
     class Status
@@ -9,10 +7,14 @@ class Jenkins
         load!
       end
 
+      def [](key)
+        @data[key]
+      end
+
       def load!
         response = @client.get("/job/#{@name}/api/json")
         if response.success?
-          @data = Hashie::Mash.new(response.body)
+          @data = response.body
           @exist = true
         end
       end
