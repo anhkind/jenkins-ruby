@@ -7,6 +7,7 @@ class Jenkins
   def self.configure(options)
     @options = options
     @configuration = @client = nil #clear previous setting objects
+    setup_client
   end
 
   def self.configuration
@@ -18,4 +19,5 @@ class Jenkins
   end
 end
 
-require "jenkins/api"
+require "jenkins/objects"
+require "jenkins/setup"

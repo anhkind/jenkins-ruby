@@ -1,6 +1,6 @@
 class Jenkins
   class Job
-    class Status
+    class Status < Object
       def initialize(name, client)
         @name   = name
         @client = client
@@ -12,7 +12,7 @@ class Jenkins
       end
 
       def load!
-        response = @client.get("/job/#{@name}/api/json")
+        response = client.get("/job/#{@name}/api/json")
         if response.success?
           @data = response.body
           @exist = true

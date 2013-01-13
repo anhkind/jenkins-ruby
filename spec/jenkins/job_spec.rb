@@ -9,13 +9,13 @@ describe Jenkins::Job do
     describe '.find' do
       it 'finds an existing job' do
         vcr 'job/find' do
-          expect(Jenkins.job.find('name')).not_to be_nil
+          expect(Jenkins::Job.find('name')).not_to be_nil
         end
       end
 
       it 'does not find a non-existing job' do
         vcr 'job/find_failed' do
-          expect(Jenkins.job.find('non-existing')).to be_nil
+          expect(Jenkins::Job.find('non-existing')).to be_nil
         end
       end
     end

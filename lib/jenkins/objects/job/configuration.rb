@@ -1,6 +1,6 @@
 class Jenkins
   class Job
-    class Configuration
+    class Configuration < Object
       def initialize(name, client)
         @name   = name
         @client = client
@@ -12,7 +12,7 @@ class Jenkins
 
       private
       def load
-        response = @client.get("/job/#{@name}/config.xml",
+        response = client.get("/job/#{@name}/config.xml",
           content_type: 'text/xml'
         )
         @data = response.body if response.success?

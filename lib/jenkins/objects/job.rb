@@ -1,14 +1,14 @@
-require 'jenkins/job/configuration'
-require 'jenkins/job/status'
+require_relative 'job/configuration'
+require_relative 'job/status'
 
 class Jenkins
-  class Job
+  class Job < Object
     attr_reader :name
 
     # class methods
     class << self
       def find(name)
-        job = new(name, @client)
+        job = new(name, client)
         job.status.exist? ? job : nil
       end
 
@@ -19,18 +19,18 @@ class Jenkins
 
     def initialize(name, client = nil)
       @name   = name
-      @client = client || self.class.instance_variable_get(:@client)
+      @client = client || self.class.client
 
       raise NotFoundError unless @name && !@name.empty?
       raise NotFoundError unless @client
     end
 
     def configuration
-      @configuration ||= Configuration.new(name, @client)
+      @configuration ||= Configuration.new(name, client)
     end
 
     def status
-      @status ||= Status.new(name, @client)
+      @status ||= Status.new(name, client)
     end
 
     def exist?
@@ -39,14 +39,14 @@ class Jenkins
 
     def save
       api_path = exist? ? "/job/#{name}/config.xml" : "/createItem?name=#{name}"
-      @client.post(api_path,
+      client.post(api_path,
         body:         configuration.to_xml,
         content_type: 'text/xml'
       ).success?
     end
 
     def destroy
-      @client.post("/job/#{name}/doDelete").status == 302
+      client.post("/job/#{name}/doDelete").status == 302
     end
 
     def reload
