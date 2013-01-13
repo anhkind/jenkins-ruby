@@ -6,18 +6,23 @@ class Jenkins
       def initialize(name, client)
         @name   = name
         @client = client
-        load
+        load!
       end
 
-      private
-      def load
+      def load!
         response = @client.get("/job/#{@name}/api/json")
-        @data    = response.body if response.success?
-        @data && parse(@data)
+        if response.success?
+          @data = Hashie::Mash.new(response.body)
+          @exist = true
+        end
       end
 
-      def parse(data)
-        Hashie::Mash.new(data)
+      def exist?
+        @exist
+      end
+
+      def data
+        @data
       end
     end
   end

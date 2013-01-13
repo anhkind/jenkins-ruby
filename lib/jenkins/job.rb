@@ -9,7 +9,7 @@ class Jenkins
     class << self
       def find(name)
         job = new(name, @client)
-        job.status && job
+        job.status.exist? ? job : nil
       end
 
       def all
@@ -34,9 +34,7 @@ class Jenkins
     end
 
     def exist?
-      response = @client.get("/api/json")
-      jobs = response.body["jobs"]
-      jobs && jobs.map{|j| j["name"]}.include?(name)
+      status.exist?
     end
 
     def save

@@ -12,4 +12,14 @@ module RSpecHelpers
       yield
     end
   end
+
+  def options
+    {
+      #host:     'localhost',
+      host:     '192.168.0.17',
+      port:     8080,
+      username: 'username',
+      password: 'password'
+    }
+  end
 end

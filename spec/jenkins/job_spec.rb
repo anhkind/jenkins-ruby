@@ -1,19 +1,9 @@
 require 'spec_helper'
 
 describe Jenkins::Job do
-  before do
-    @options = {
-      #host:     'localhost',
-      host:     '192.168.0.17',
-      port:     8080,
-      username: 'username',
-      password: 'password'
-    }
-  end
-
   describe 'class methods' do
     before do
-      Jenkins.configure(@options)
+      Jenkins.configure(options)
     end
 
     describe '.find' do
@@ -23,9 +13,9 @@ describe Jenkins::Job do
         end
       end
 
-      it 'does not a non-existing job' do
+      it 'does not find a non-existing job' do
         vcr 'job/find_failed' do
-          expect(Jenkins.job.find('not_existing')).not_to be_nil
+          expect(Jenkins.job.find('non-existing')).to be_nil
         end
       end
     end
@@ -78,7 +68,7 @@ describe Jenkins::Job do
 
   describe 'instance methods' do
     before do
-      @client = Jenkins::Client.new(@options)
+      @client = Jenkins::Client.new(options)
       @job = Jenkins::Job.new('name', @client)
       @job.configuration.stub(:to_xml).and_return(content(file('blank_config.xml')))
     end
