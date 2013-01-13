@@ -18,6 +18,7 @@ class Jenkins
           @exist = true
         end
       end
+      alias_method :reload!, :load!
 
       def exist?
         @exist

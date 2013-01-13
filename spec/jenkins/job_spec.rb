@@ -73,6 +73,20 @@ describe Jenkins::Job do
       @job.configuration.stub(:to_xml).and_return(content(file('blank_config.xml')))
     end
 
+    describe '#status' do
+      it 'has some status' do
+        vcr 'job/status' do
+          expect(@job.status.exist?).to be_true
+        end
+      end
+
+      it 'accesses to some status by string key' do
+        vcr 'job/status' do
+          expect(@job.status['name']).to eq('name')
+        end
+      end
+    end
+
     describe '#exist?' do
       it 'exists on server' do
         vcr 'job/exist' do

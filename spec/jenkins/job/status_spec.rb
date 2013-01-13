@@ -38,5 +38,17 @@ describe Jenkins::Job::Status do
         end
       end
     end
+
+    describe '#load!' do
+      it 'loads the status from the server' do
+        vcr 'job/status/load' do
+          @status.instance_variable_set(:@exist, false)
+          expect(@status.exist?).not_to be_true
+
+          @status.load!
+          expect(@status.exist?).to be_true
+        end
+      end
+    end
   end
 end
