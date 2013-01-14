@@ -15,8 +15,7 @@ module RSpecHelpers
 
   def options
     {
-      #host:     'localhost',
-      host:     '192.168.0.17',
+      host:     'localhost',
       port:     8080,
       username: 'username',
       password: 'password'

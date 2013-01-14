@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://192.168.0.17:8080/job/name/config.xml
+    uri: http://localhost:8080/job/name/config.xml
     body:
       encoding: UTF-8
       string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project>\n    <keepDependencies>false</keepDependencies>\n

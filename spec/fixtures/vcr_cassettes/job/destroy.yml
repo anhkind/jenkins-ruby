@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://192.168.0.17:8080/job/name/doDelete
+    uri: http://localhost:8080/job/name/doDelete
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       !binary "c2VydmVy":
       - Winstone Servlet Engine v0.9.10
       location:
-      - http://192.168.0.17:8080/
+      - http://localhost:8080/
       !binary "Y29udGVudC1sZW5ndGg=":
       - '0'
       !binary "Y29ubmVjdGlvbg==":
