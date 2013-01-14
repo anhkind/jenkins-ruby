@@ -1,24 +1,45 @@
 # jenkins-ruby [![Build Status](https://travis-ci.org/anhkind/jenkins-ruby.png)](https://travis-ci.org/anhkind/jenkins-ruby) [![Dependency Status](https://gemnasium.com/anhkind/jenkins-ruby.png)](https://gemnasium.com/anhkind/jenkins-ruby)
 
-TODO: Write a gem description
+***jenkins-ruby*** is a suite of Ruby classes that help to connect and automate different tasks on Jenkins CI through its Remote Access API.
 
-## Installation
+## Setup
 
-Add this line to your application's Gemfile:
+Setup your Jenkins as following:
 
-    gem 'jenkins-ruby'
+```
+Jenkins.configure(options)
+```
 
-And then execute:
+where options is a `Hash` with following keys:
 
-    $ bundle
+```
+options = (
+  	host:     'jenkins_host', # required
+  	port:     8080,           # optional, default is 8080
+  	username: 'username',     # required
+  	password: 'password'      # required
+)
+```
 
-Or install it yourself as:
-
-    $ gem install jenkins-ruby
+Configuration from .yml file will be added soon!
 
 ## Usage
+After configuring Jenkin, a job can be created as following:
 
-TODO: Write usage instructions here
+```
+job = Jenkins::Job.new('job_name')
+job #=> #<Jenkins::Job:0x007fac429493f0>
+```
+
+If you want to search for a job:
+
+```
+job = Jenkins::Job.find('existing_job')
+job #=> #<Jenkins::Job:0x007fac41d0e630>
+
+job = Jenkins::Job.find('non_existing_job')
+job #=> nil
+```
 
 ## Contributing
 

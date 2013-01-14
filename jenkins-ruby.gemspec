@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Jenkins::VERSION
   gem.authors       = ["anhkind"]
   gem.email         = ["anhkind@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Utilities to connect to Jenkins CI through Remote Access API}
+  gem.summary       = %q{Utilities to connect to Jenkins CI through Remote Access API}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
