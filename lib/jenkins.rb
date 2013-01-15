@@ -21,3 +21,4 @@ end
 
 require "jenkins/objects"
 require "jenkins/setup"
+require "jenkins/plugin"
